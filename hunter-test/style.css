@@ -37,9 +37,12 @@ body[data-device="mobile"] #app { width: min(100vw, calc(100dvh * 9 / 16)); min-
 h1, h2, h3, p { margin-top: 0; }
 h1 { margin-bottom: 14px; font-size: clamp(1.85rem, 9vw, 3rem); line-height: 1.12; letter-spacing: -.065em; }
 h1 em { color: var(--cyan); font-style: normal; }
-.seal, .rank-emblem { width: 62px; height: 62px; margin: 22px 0 12px; position: relative; display: grid; place-items: center; border: 1px solid var(--line2); clip-path: polygon(15% 0, 85% 0, 100% 15%, 100% 85%, 85% 100%, 15% 100%, 0 85%, 0 15%); }
-.fallback-image img { position: absolute; width: 100%; height: 100%; object-fit: cover; }
-.fallback-image span { color: var(--cyan); font: 700 1rem Rajdhani, sans-serif; letter-spacing: .14em; }
+.seal, .rank-emblem { width: 62px; height: 62px; margin: 22px 0 12px; position: relative; display: grid; place-items: center; color: var(--cyan); }
+.seal::before, .rank-emblem::before { content: ""; position: absolute; inset: 8%; border: 1px solid currentColor; transform: rotate(45deg); opacity: .35; }
+.seal svg, .rank-emblem svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.seal svg path { fill: none; stroke: currentColor; stroke-width: 2; }
+.seal svg path:last-child { stroke-width: 1.4; opacity: .42; }
+.seal span, .rank-emblem span { position: relative; z-index: 1; color: currentColor; font: 700 1rem Rajdhani, sans-serif; letter-spacing: .14em; text-shadow: 0 0 10px currentColor; }
 .intro { margin-bottom: 18px; padding-left: 11px; border-left: 2px solid var(--line2); color: var(--muted); font-size: .76rem; }
 .desktop-classified, .form-heading { display: none; }
 form { display: grid; gap: 12px; }
@@ -84,8 +87,18 @@ button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 #loading-list li.done::before { content: "✓ "; }
 .access-header strong { color: var(--green); }
 .result-hero { display: grid; grid-template-columns: 68px 1fr; align-items: center; gap: 12px; padding: 17px 0; border-bottom: 1px solid var(--line); }
-.rank-emblem { width: 64px; height: 64px; margin: 0; }
+.rank-emblem { width: 64px; height: 64px; margin: 0; --rank-color: var(--cyan); color: var(--rank-color); }
+.rank-emblem .rank-ring { fill: #071014; stroke: currentColor; stroke-width: 2; }
+.rank-emblem .rank-core { fill: currentColor; opacity: .2; stroke: currentColor; stroke-width: 1.5; }
 .rank-emblem span { font-size: 1.25rem; }
+.rank-emblem[data-rank="F"] { --rank-color: #75858a; }
+.rank-emblem[data-rank="E"] { --rank-color: #83aa9c; }
+.rank-emblem[data-rank="D"] { --rank-color: #77b5c8; }
+.rank-emblem[data-rank="C"] { --rank-color: #72c9a0; }
+.rank-emblem[data-rank="B"] { --rank-color: #9b91df; }
+.rank-emblem[data-rank="A"] { --rank-color: #d5aa62; }
+.rank-emblem[data-rank="S"] { --rank-color: #e66d68; }
+.rank-emblem[data-rank="EX"] { --rank-color: #f1f5f5; filter: drop-shadow(0 0 8px #e16d68) drop-shadow(0 0 16px #7bc8c6); }
 .result-hero h2 { margin-bottom: 3px; font-size: clamp(1.55rem, 7vw, 2.3rem); }
 .result-hero p:last-child { margin: 0; color: var(--muted); font-size: .7rem; }
 .special-alert { margin-top: 13px; padding: 8px; border: 1px solid var(--red); color: #f2aaa5; text-align: center; font-size: .68rem; letter-spacing: .1em; }

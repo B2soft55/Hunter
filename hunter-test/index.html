@@ -23,7 +23,7 @@
           <span class="status-dot">SECURE TERMINAL / 04</span>
         </header>
         <div class="start-copy">
-          <div class="seal fallback-image"><img src="assets/icons/rank_placeholder.webp" alt="" onerror="this.hidden=true"><span>HMA</span></div>
+          <div class="seal" aria-hidden="true"><svg viewBox="0 0 100 100" role="img"><path d="M50 7 83 19 93 50 82 82 50 93 18 82 7 50 18 18Z"/><path d="M31 62V38m38 24V38M31 50h38M40 68l10-36 10 36"/></svg><span>HMA</span></div>
           <p class="kicker">국가 각성자 통합관리망</p>
           <h1>헌터관리국<br><em>각성자 조회 시스템</em></h1>
           <p class="intro">본 단말은 허가된 대상의 잠재 마력 파장 및 재난 대응 성향을 분석합니다. 허위 정보 입력 시 관리국법 제17조에 따라 기록될 수 있습니다.</p>
@@ -47,7 +47,7 @@
 
     <section id="question-screen" class="screen" aria-labelledby="question-title">
       <div class="shell question-shell">
-        <header class="system-header"><span>HMA / APTITUDE SCAN</span><span id="question-count">01 / 12</span></header>
+        <header class="system-header"><span>HMA / APTITUDE SCAN</span><span id="question-count">01 / 15</span></header>
         <div class="progress"><span id="progress-bar"></span></div>
         <div class="question-copy"><p class="kicker">재난 대응 시뮬레이션</p><h2 id="question-title"></h2><p id="question-text"></p><div class="question-watermark" aria-hidden="true">SIMULATION<br>RECORD</div></div>
         <div id="choices" class="choices"></div>
@@ -62,7 +62,7 @@
     <section id="result-screen" class="screen" aria-labelledby="result-heading" style="--screen-bg:url('assets/bg/bg_result_default.webp')">
       <div class="shell result-shell">
         <header class="access-header"><span>[ HMA DATABASE ACCESS ]</span><strong>ACCESS GRANTED</strong></header>
-        <div class="result-hero"><div class="rank-emblem fallback-image"><img id="rank-image" alt="등급 아이콘" onerror="this.hidden=true"><span id="rank-mark"></span></div><div><p class="kicker">CLASSIFIED AWAKENER FILE</p><h2 id="result-heading"></h2><p id="ability-description"></p></div></div>
+        <div class="result-hero"><div id="rank-emblem" class="rank-emblem" aria-label="능력 등급"><svg viewBox="0 0 100 100" aria-hidden="true"><path class="rank-ring" d="M50 5 82 18 95 50 82 82 50 95 18 82 5 50 18 18Z"/><path class="rank-core" d="m50 20 9 20 21 10-21 10-9 20-9-20-21-10 21-10Z"/></svg><span id="rank-mark"></span></div><div><p class="kicker">CLASSIFIED AWAKENER FILE</p><h2 id="result-heading"></h2><p id="ability-description"></p></div></div>
         <div id="special-alert" class="special-alert" hidden></div>
         <dl id="result-fields" class="result-fields"></dl>
         <section class="memo"><h3>관리국 비고 / AUTHORITY NOTE</h3><p id="result-note"></p></section>

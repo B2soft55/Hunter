@@ -28,15 +28,11 @@ python3 -m http.server 8000
 - 등급 기준과 히든 결과: `data/ranks.js`
 - 결과 계산 및 직급·위험도 규칙: `script.js`
 
-## 이미지 교체
+## 선택적 배경 이미지
 
-`assets/` 아래의 placeholder 파일명과 동일한 WebP 이미지를 추가하면 자동 적용됩니다. 파일이 없어도 텍스트 fallback과 배경색이 표시됩니다.
+아이콘과 UI 장식은 외부 스프라이트나 대체 이미지 파일 없이 CSS 도형과 인라인 SVG로 렌더링됩니다. 별도 아이콘·스프라이트 파일을 추가할 필요가 없습니다.
 
-- 시작/질문/결과 배경: `assets/bg/`
-- 능력/부서/등급 아이콘: `assets/icons/`
-- 추후 UI 스프라이트: `assets/sprites/ui_sprites.webp`
-
-필요하면 데이터 파일의 상대 경로를 바꿔 다른 파일명을 사용할 수 있습니다.
+배경 이미지는 선택 사항입니다. 배경을 사용하려면 `assets/bg/`에 `bg_start.webp`, `bg_q01.webp`~`bg_q03.webp`, `bg_result_default.webp`를 추가하면 되고, 파일이 없어도 그라데이션 배경으로 정상 표시됩니다.
 
 ## 모바일·PC 화면 분리
 

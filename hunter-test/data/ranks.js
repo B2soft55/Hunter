@@ -1,13 +1,13 @@
 // min은 원점수 합계가 아니라 script.js에서 계산한 가치관 일관도 점수입니다.
 window.HMA_RANKS = [
-  { name: "EX급", min: 36, icon: "assets/icons/rank_placeholder.webp" },
-  { name: "S급", min: 32, icon: "assets/icons/rank_placeholder.webp" },
-  { name: "A급", min: 28, icon: "assets/icons/rank_placeholder.webp" },
-  { name: "B급", min: 24, icon: "assets/icons/rank_placeholder.webp" },
-  { name: "C급", min: 20, icon: "assets/icons/rank_placeholder.webp" },
-  { name: "D급", min: 16, icon: "assets/icons/rank_placeholder.webp" },
-  { name: "E급", min: 12, icon: "assets/icons/rank_placeholder.webp" },
-  { name: "F급", min: 0, icon: "assets/icons/rank_placeholder.webp" }
+  { name: "EX급", min: 36 },
+  { name: "S급", min: 32 },
+  { name: "A급", min: 28 },
+  { name: "B급", min: 24 },
+  { name: "C급", min: 20 },
+  { name: "D급", min: 16 },
+  { name: "E급", min: 12 },
+  { name: "F급", min: 0 }
 ];
 
 window.HMA_HIDDEN_RESULTS = [

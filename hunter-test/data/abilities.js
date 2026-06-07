@@ -1,4 +1,4 @@
-const A = (name, description) => ({ name, description, icon: "assets/icons/ability_placeholder.webp" });
+const A = (name, description) => ({ name, description });
 window.HMA_ABILITIES = {
   "COMBAT+INT": [A("공간절단","좌표의 약점을 계산해 공간째 절단한다."),A("차원균열","전장에 단거리 균열을 연속 생성한다."),A("약점관측","대상의 치명적 결함을 시야에 표시한다."),A("마력탄도학","모든 투사체의 궤도를 지배한다.")],
   "COMBAT+LEAD": [A("전장의 군주","아군의 전투 감각을 하나로 연결한다."),A("선봉명령","돌격한 아군의 한계를 일시 해제한다."),A("무기지휘","주변 무기를 원격으로 편성한다.")],

@@ -60,7 +60,7 @@
     const concentration=(stats[sorted[0]]+stats[sorted[1]])/total;
     const consistencyScore=Math.min(40,Math.round(spread*1.25+dominance*.55+concentration*18));
     const hidden=HMA_HIDDEN_RESULTS.find(h=>h.test(stats,consistencyScore)); const rank=hidden?"EX급":HMA_RANKS.find(r=>consistencyScore>=r.min).name; const abilityKey=[sorted[0],sorted[1]].sort((a,b)=>Object.keys(STATS).indexOf(a)-Object.keys(STATS).indexOf(b)).join("+");
-    const ability=buildAbility(stats,rank,abilityKey,hidden); const dept=hidden?{name:hidden.department,icon:"assets/icons/dept_placeholder.webp"}:HMA_DEPARTMENTS[sorted[0]];
+    const ability=buildAbility(stats,rank,abilityKey,hidden); const dept=hidden?{name:hidden.department}:HMA_DEPARTMENTS[sorted[0]];
     const position=hidden?hidden.position:getPosition(stats,consistencyScore); const risk=hidden?hidden.risk:getRisk(rank,stats); const note=hidden?hidden.note:getNote(sorted[0],rank,dept.name,consistencyScore);
     return {stats,total,consistencyScore,sorted,hidden,rank,ability,dept,position,risk,note,registration:`KR-HMA-2026-${String(Math.floor(Math.random()*1000000)).padStart(6,"0")}`};
   }
@@ -71,9 +71,9 @@
   }
   function buildAbility(stats,rank,abilityKey,hidden) {
     const tier=HMA_ABILITY_TIERS[rank];
-    if(hidden)return {name:hidden.name,description:`${hidden.note} ${tier.effect}`,scope:HMA_HIDDEN_ABILITY_SCOPES[hidden.name]||tier.scope,tier:tier.title,icon:"assets/icons/ability_placeholder.webp"};
+    if(hidden)return {name:hidden.name,description:`${hidden.note} ${tier.effect}`,scope:HMA_HIDDEN_ABILITY_SCOPES[hidden.name]||tier.scope,tier:tier.title};
     const pool=HMA_ABILITIES[abilityKey]; const base=pool[distributionHash(stats,rank)%pool.length];
-    return {name:`${tier.prefix}: ${base.name}`,description:`${base.description} ${tier.effect}`,scope:tier.scope,tier:tier.title,icon:base.icon};
+    return {name:`${tier.prefix}: ${base.name}`,description:`${base.description} ${tier.effect}`,scope:tier.scope,tier:tier.title};
   }
 
   function getPosition(s,total){if(s.MADNESS>=13)return"격리 대상";if(total>=36&&s.AMBITION>=10)return"소장";if(total>=32&&s.LEAD>=10)return"국장";if(s.LEAD>=9)return"팀장";if(total>=28)return"선임 요원";if(total>=23)return"정규 헌터";if(total>=18)return"계약직 헌터";if(s.SURVIVE>=10)return"임시 파견직";return"말단 직원"}
@@ -96,7 +96,7 @@
     },430);
   }
 
-  function renderResult(){state.isLoading=false;const r=state.result,p=state.profile;show("result-screen");$("rank-image").src=HMA_RANKS.find(x=>x.name===r.rank).icon;$("rank-mark").textContent=r.rank.replace("급","");$("result-heading").textContent=r.ability.name;$("ability-description").textContent=r.ability.description;$("special-alert").hidden=!r.hidden;$("special-alert").textContent=r.hidden?"⚠ EX-CLASS HIDDEN PROFILE DETECTED":"";
+  function renderResult(){state.isLoading=false;const r=state.result,p=state.profile;show("result-screen");$("rank-emblem").dataset.rank=r.rank.replace("급","");$("rank-mark").textContent=r.rank.replace("급","");$("result-heading").textContent=r.ability.name;$("ability-description").textContent=r.ability.description;$("special-alert").hidden=!r.hidden;$("special-alert").textContent=r.hidden?"⚠ EX-CLASS HIDDEN PROFILE DETECTED":"";
     const fields=[["조회 대상",p.name],["성별",p.gender],["나이",`${p.age}세`],["등록번호",r.registration],["분류명",classification(p.age)],["성향 일관도",`${r.consistencyScore} / 40`],["능력 등급",r.rank],["초능력",r.ability.name],["특성 위계",r.ability.tier],["효과 범위",r.ability.scope],["배치 부서",r.dept.name],["직급",r.position],["위험도",r.risk]];$("result-fields").innerHTML=fields.map(([a,b])=>`<div><dt>${a}</dt><dd>${b}</dd></div>`).join("");$("result-note").textContent=r.note;const max=Math.max(...Object.values(r.stats));$("stat-chart").innerHTML=Object.entries(r.stats).map(([k,v])=>`<div class="stat-row"><span>${STATS[k]}</span><div class="stat-bar"><i style="width:${v/max*100}%"></i></div><b>${v}</b></div>`).join("");}
   $("copy-btn").addEventListener("click",async()=>{const r=state.result;const text=`[헌터관리국 각성자 조회 결과]\n조회 대상: ${state.profile.name}\n등급: ${r.rank}\n능력: ${r.ability.name}\n효과 범위: ${r.ability.scope}\n배치 부서: ${r.dept.name}\n직급: ${r.position}\n위험도: ${r.risk}\n\n나도 각성자 조회하기: ${location.href}`;try{await navigator.clipboard.writeText(text);$("copy-status").textContent="조회 결과가 클립보드에 복사되었습니다."}catch{const t=document.createElement("textarea");t.value=text;document.body.append(t);t.select();document.execCommand("copy");t.remove();$("copy-status").textContent="조회 결과가 복사되었습니다."}});
   $("restart-btn").addEventListener("click",()=>{clearTimeout(state.transitionTimer);clearInterval(state.loadingTimer);state.answers.fill(null);state.result=null;state.current=0;state.isTransitioning=false;state.isLoading=false;$("profile-form").reset();$("copy-status").textContent="";show("start-screen")});
