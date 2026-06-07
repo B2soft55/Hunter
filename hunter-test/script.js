@@ -3,6 +3,16 @@
   const STATS = { COMBAT:"전투성", INT:"분석력", LEAD:"통솔력", FAITH:"신성력", AMBITION:"야망", SURVIVE:"생존력", MADNESS:"광기", EMPATHY:"공감력" };
   const state = { profile:{}, answers:Array(HMA_QUESTIONS.length).fill(null), current:0, result:null };
   const $ = id => document.getElementById(id);
+
+  // Mobile visitors receive a portrait 9:16 terminal; desktop visitors receive the wide command console.
+  const mobileUserAgent = navigator.userAgentData?.mobile ?? /Android|iPhone|iPad|iPod|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  function setDeviceMode() {
+    const compactViewport = window.matchMedia("(max-width: 767px)").matches;
+    const touchFirstDevice = window.matchMedia("(pointer: coarse) and (hover: none)").matches;
+    document.body.dataset.device = mobileUserAgent || touchFirstDevice || compactViewport ? "mobile" : "desktop";
+  }
+  setDeviceMode();
+  window.addEventListener("resize", setDeviceMode);
   const screens = [...document.querySelectorAll(".screen")];
   const show = id => { screens.forEach(s => s.classList.toggle("active", s.id === id)); window.scrollTo(0,0); };
 
