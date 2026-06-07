@@ -69,6 +69,7 @@ button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 .choices { display: grid; gap: 7px; margin: 17px 0 10px; }
 .choice { width: 100%; min-height: 58px; padding: 11px 12px; display: grid; grid-template-columns: 25px 1fr; gap: 8px; border: 1px solid var(--line); background: #091014ed; color: var(--text); text-align: left; cursor: pointer; font-family: inherit; line-height: 1.55; }
 .choice:hover, .choice.selected, .choice:focus-visible { border-color: var(--cyan); background: #102024; }
+.choice:disabled { cursor: wait; opacity: .86; }
 .choice strong { color: var(--cyan); font: 700 .95rem Rajdhani, sans-serif; }
 .choice span { font-size: .72rem; }
 .text-button { min-height: 40px; padding: 7px 0; border: 0; background: none; color: var(--muted); }
