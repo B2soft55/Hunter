@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#060a0d">
+  <meta name="description" content="헌터관리국 각성자 조회 시스템 심리테스트">
+  <title>헌터관리국 각성자 조회 시스템</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-device="mobile">
+  <div class="noise" aria-hidden="true"></div>
+  <div class="desktop-frame" aria-hidden="true">
+    <span>HMA CENTRAL NETWORK</span><span>AUTHORIZED PERSONNEL ONLY</span>
+  </div>
+  <main id="app">
+    <div id="device-indicator" class="device-indicator" aria-hidden="true"></div>
+
+    <section id="start-screen" class="screen active" style="--screen-bg:url('assets/bg/bg_start.webp')">
+      <div class="shell start-shell">
+        <header class="system-header">
+          <span>HUNTER MANAGEMENT AUTHORITY</span>
+          <span class="status-dot">SECURE TERMINAL / 04</span>
+        </header>
+        <div class="start-copy">
+          <div class="seal" aria-hidden="true"><svg viewBox="0 0 100 100" role="img"><path d="M50 7 83 19 93 50 82 82 50 93 18 82 7 50 18 18Z"/><path d="M31 62V38m38 24V38M31 50h38M40 68l10-36 10 36"/></svg><span>HMA</span></div>
+          <p class="kicker">국가 각성자 통합관리망</p>
+          <h1>헌터관리국<br><em>각성자 조회 시스템</em></h1>
+          <p class="intro">본 단말은 허가된 대상의 잠재 마력 파장 및 재난 대응 성향을 분석합니다. 허위 정보 입력 시 관리국법 제17조에 따라 기록될 수 있습니다.</p>
+          <div class="desktop-classified" aria-hidden="true"><b>CLASSIFIED</b><span>HMA-SEC / LEVEL 4</span></div>
+        </div>
+        <form id="profile-form" novalidate>
+          <div class="form-heading"><span>AWAKENER IDENTIFICATION</span><strong>조회 대상 정보 입력</strong></div>
+          <label>조회 대상 이름<input id="name" name="name" autocomplete="name" placeholder="성명을 입력하십시오"></label>
+          <fieldset><legend>성별 정보</legend><div class="gender-grid">
+            <label><input type="radio" name="gender" value="남성"><span>남성</span></label>
+            <label><input type="radio" name="gender" value="여성"><span>여성</span></label>
+            <label><input type="radio" name="gender" value="비공개"><span>비공개</span></label>
+            <label><input type="radio" name="gender" value="기타"><span>기타</span></label>
+          </div></fieldset>
+          <label>대상 나이<input id="age" name="age" type="number" inputmode="numeric" min="1" max="150" placeholder="나이 입력"></label>
+          <p id="form-error" class="error" role="alert"></p>
+          <button class="primary" type="submit">각성자 조회 시작 <span>›</span></button>
+        </form>
+      </div>
+    </section>
+
+    <section id="question-screen" class="screen" aria-labelledby="question-title">
+      <div class="shell question-shell">
+        <header class="system-header"><span>HMA / APTITUDE SCAN</span><span id="question-count">01 / 15</span></header>
+        <div class="progress"><span id="progress-bar"></span></div>
+        <div class="question-copy"><p class="kicker">재난 대응 시뮬레이션</p><h2 id="question-title"></h2><p id="question-text"></p><div class="question-watermark" aria-hidden="true">SIMULATION<br>RECORD</div></div>
+        <div id="choices" class="choices"></div>
+        <button id="prev-btn" class="text-button" type="button">← 이전 질문</button>
+      </div>
+    </section>
+
+    <section id="loading-screen" class="screen">
+      <div class="shell loading-shell"><div class="scanner" aria-hidden="true"><span></span></div><p class="kicker">HMA SECURE PROCESS</p><h2>통합 데이터베이스 조회</h2><ul id="loading-list"></ul></div>
+    </section>
+
+    <section id="result-screen" class="screen" aria-labelledby="result-heading" style="--screen-bg:url('assets/bg/bg_result_default.webp')">
+      <div class="shell result-shell">
+        <header class="access-header"><span>[ HMA DATABASE ACCESS ]</span><strong>ACCESS GRANTED</strong></header>
+        <div class="result-hero"><div id="rank-emblem" class="rank-emblem" aria-label="능력 등급"><svg viewBox="0 0 100 100" aria-hidden="true"><path class="rank-ring" d="M50 5 82 18 95 50 82 82 50 95 18 82 5 50 18 18Z"/><path class="rank-core" d="m50 20 9 20 21 10-21 10-9 20-9-20-21-10 21-10Z"/></svg><span id="rank-mark"></span></div><div><p class="kicker">CLASSIFIED AWAKENER FILE</p><h2 id="result-heading"></h2><p id="ability-description"></p></div></div>
+        <div id="special-alert" class="special-alert" hidden></div>
+        <dl id="result-fields" class="result-fields"></dl>
+        <section class="memo"><h3>관리국 비고 / AUTHORITY NOTE</h3><p id="result-note"></p></section>
+        <section class="stat-section"><h3>마력 성향 분석</h3><div id="stat-chart"></div></section>
+        <div class="result-actions"><button id="copy-btn" class="primary" type="button">결과 복사하기</button><button id="restart-btn" class="secondary" type="button">다시 조회하기</button></div>
+        <p id="copy-status" class="copy-status" role="status"></p>
+      </div>
+    </section>
+  </main>
+  <script src="data/questions.js"></script><script src="data/abilities.js"></script><script src="data/departments.js"></script><script src="data/ranks.js"></script><script src="script.js"></script>
+</body>
+</html>
